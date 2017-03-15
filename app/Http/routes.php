@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return ('welcome');
-});
+    return view('welcome');
+});		
+Route::get('pengguna','PenggunaController@awal'); 
+Route::get('/public', function () {
+    return ('Nama saya : Suryani Junita Patandianan');
+Route::get('pengguna/tambah','PenggunaController@tambah'); 
+});	
