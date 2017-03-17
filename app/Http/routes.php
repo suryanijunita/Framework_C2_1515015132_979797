@@ -11,11 +11,52 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});		
+Route::get('pengguna/tambah','PenggunaController@tambah'); 
 Route::get('pengguna','PenggunaController@awal'); 
 Route::get('/public', function () {
     return ('Nama saya : Suryani Junita Patandianan');
-Route::get('pengguna/tambah','PenggunaController@tambah'); 
+
+});	
+
+Route::get('ruangan/tambah','RuanganController@tambah'); 
+Route::get('ruangan','RuanganController@awal'); 
+Route::get('/public', function () {
+    return ('Nama saya : Suryani Junita Patandianan');
+});
+
+Route::get('matakuliah/tambah','MatakuliahController@tambah'); 
+Route::get('matakuliah','MatakuliahController@awal'); 
+Route::get('/public', function () {
+    return ('Nama saya : Suryani Junita Patandianan');
+});
+
+Route::get('dosen/tambah','DosenController@tambah'); 
+Route::get('dosen','DosenController@awal'); 
+Route::get('/public', function () {
+    return ('Nama saya : Suryani Junita Patandianan');
+});
+
+Route::get('mahasiswa/tambah','MahasiswaController@tambah');
+Route::get('mahasiswa','MahasiswaController@awal');
+Route::get('public', function(){
+return 'Nama Saya = Suryani Junita Patandianan';
+
+});
+
+Route::get('dosenmatakuliah/tambah','DosenmatakuliahController@tambah');
+Route::get('dosenmatakuliah','DosenmatakuliahController@awal');
+Route::get('public', function(){
+return 'Nama Saya = Suryani Junita Patandianan';
+
+});
+
+Route::get('jadwalmatakuliah/tambah','JadwalmatakuliahController@tambah');
+Route::get('jadwalmatakuliah','JadwalmatakuliahController@awal');
+Route::get('public', function(){
+return 'Nama Saya = Suryani Junita Patandianan';
+
+});
+
+Route::get('/', function () {
+    return view('welcome');
 });	
