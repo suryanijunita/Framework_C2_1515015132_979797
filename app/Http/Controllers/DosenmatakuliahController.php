@@ -8,22 +8,52 @@ use App\Http\Requests;
 
 use App\Dosenmatakuliah;
 
-class DosenmatakuliahController extends Controller
+use App\Dosen;
+
+use App\Matakuliah;
+
+class dosenmatakuliahController extends Controller
 {
-     public function awal()
+    public function awal()
 {
-	return "Hello dari PenggunaController";
+	return view('dosenmatakuliah.awal', ['data'=>Dosenmatakuliah::all()]); //return "Hello dari MahasiswaController";
 }
 	public function tambah()
 {
-	return $this->simpan();
+	return view('dosenmatakuliah.tambah'); //return $this->simpan();
 }
-	public function simpan()
+	public function simpan(Request $input) //public function simpan()
 {
-	$dosen_matakuliah = new Dosenmatakuliah();
-	$dosen_matakuliah-> dosen_id = 1;
-	$dosen_matakuliah-> matakuliah_id = 1;
-	$dosen_matakuliah->save();
-	return "dosen matakuliah dengan dosen_id {$dosen_matakuliah->dosen_id} dengan matakuliah_id {$dosen_matakuliah->matakuliah_id} telah disimpan";
+	$dosenmatakuliah = new Dosenmatakuliah;
+	$dosenmatakuliah->dosen_id = $input->dosen_id;
+	$dosenmatakuliah->matakuliah_id= $input->matakuliah_id;
+	$informasi = $dosenmatakuliah->save() ? 'Berhasil simpan data' : 'Gagal simpan data';
+	return redirect('dosenmatakuliah')->with(['informasi'=>$informasi]);
+	//$dosenmatakuliah->save();
+	//return "data dengan username ($dosenmatakuliah->username) telah disimpan";
 }
+	public function edit($id)
+{
+	$dosenmatakuliah = Dosenmatakuliah::find($id);
+	return view('dosenmatakuliah.edit')->with(array('dosenmatakuliah'=>$dosenmatakuliah));
 }
+	public function lihat($id)
+{
+	$dosenmatakuliah = Dosenmatakuliah::find($id);
+	return view('dosenmatakuliah.lihat')->with(array('dosenmatakuliah'=>$dosenmatakuliah));
+}
+	public function update($id, Request $input)
+{
+	$dosenmatakuliah = Dosenmatakuliah::find($id);
+	$dosenmatakuliah->dosen_id = $input->dosen_id;
+	$dosenmatakuliah->matakuliah_id = $input->matakuliah_id;
+	$informasi = $dosenmatakuliah->save() ? 'Berhasil simpan data' : 'Gagal simpan data';
+	return redirect('dosenmatakuliah')->with(['informasi'=>$informasi]);
+}
+	public function hapus($id)
+{
+	$dosenmatakuliah = Dosenmatakuliah::find($id);
+	$informasi = $dosenmatakuliah->delete() ? 'Berhasil hapus data' : 'Gagal hapus data';
+	return redirect('dosenmatakuliah')->with(['informasi'=>$informasi]);
+}
+	}
