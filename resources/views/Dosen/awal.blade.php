@@ -18,7 +18,7 @@
 		</thead>
 		<tbody>
 			<?php $x=1; ?>
-			@foreach ($data as $dosen)
+			@foreach ($semuadosen as $dosen)
 			<tr>
 				<td>{{ $x++}}</td>
 				<td>{{ $dosen->nama or 'Nama Kosong' }}</td>

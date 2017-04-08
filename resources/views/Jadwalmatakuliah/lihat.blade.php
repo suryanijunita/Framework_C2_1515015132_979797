@@ -2,44 +2,33 @@
 @section('container')
 <div class="panel panel-warning">
 	<div class="panel-heading">
-		<strong><a href="{{ url('jadwal_matakuliah') }}"><i style+"color:#8a6d3b" class="fa text-default fa-chevron-left"></i></a> Detail Jadwal Mahasiswa</strong>		
+		<strong><a href="{{ url('jadwalmatakuliah') }}"><i style+"color:#8a6d3b" class="fa text-default fa-chevron-left"></i></a> Detail Jadwal Matakuliah</strong>		
 	</div>
 	<table class="table">
 		<tr>
-			<td>Nama Mahasiswa</td>
+			<td>Mahasiswsa Id</td>
 			<td>:</td>
-			<td>{{ $jadwal_matakuliah->mahasiswa->nama }}</td>
-		</tr>
+			<td>{{ $jadwalmatakuliah->mahasiswa_id }}</td>
+		</tr>	
 		<tr>
-			<td>NIM Mahasiswa</td>
+			<td>Ruangan Id</td>
 			<td>:</td>
-			<td>{{ $jadwal_matakuliah->mahasiswa->nim }}</td>
-		</tr>
+			<td>{{ $jadwalmatakuliah->ruangan_id }}</td>
+		</tr>	
 		<tr>
-			<td>Nama Dosen</td>
+			<td>Dosenmatakuliah Id</td>
 			<td>:</td>
-			<td>{{ $jadwal_matakuliah->dosen_matakuliah->nip }}</td>
+			<td>{{ $jadwalmatakuliah->dosenmatakuliah_id }}</td>
 		</tr>
-		<tr>
-			<td>NIP Dosen</td>
-			<td>:</td>
-			<td>{{ $jadwal_matakuliah->dosen_matakuliah->dosen->nip }}</td>
-		</tr>
-		<tr>
-			<td>Nama Matakuliah</td>
-			<td>:</td>
-			<td>{{ $jadwal_matakuliah->dosen_matakuliah->matakuliah->title }}</td>
-		</tr>
-
 		<tr>
 			<td class="col-xs-4">Dibuat tanggal</td>
 			<td class="col-cs-1">:</td>
-			<td>{{$jadwal_matakuliah->created_at}}</td>
+			<td>{{$jadwalmatakuliah->created_at}}</td>
 		</tr>
 		<tr>
 			<td class="col-xs-4">Diupdate tanggal</td>
 			<td class="col-cs-1">:</td>
-			<td>{{$jadwal_matakuliah->updated_at}}</td>
+			<td>{{$jadwalmatakuliah->updated_at}}</td>
 		</tr>
 	</table>
 </div>

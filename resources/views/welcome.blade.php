@@ -38,8 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Nama : Suryani Junita Patandianan</div>
-                <div class="title">NIM : 1515015132</div>
+                <div class="title"><b>Nama : Suryani Junita Patandianan</b></div>
+                <div class="title"><b>Nim : 1515015132</b></div>
             </div>
         </div>
     </body>

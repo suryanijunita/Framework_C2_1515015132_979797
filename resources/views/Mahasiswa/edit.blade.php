@@ -1,8 +1,9 @@
 @extends('master')
 @section('container')
+
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<strong><a href="{{ url('mahasiswa') }}"><i class="fa text-default fa-cheron-left"></i></a> Perbarui Data Mahasiswa</strong>
+		<strong><a href="{{url('mahasiswa')}}"><i class="fa text-default fa-cheron-left"></i></a> Perbarui Data Mahasiswa</strong>
 	</div>
 	{!! Form::model($mahasiswa,['url'=>'mahasiswa/edit/'.$mahasiswa->id,'class'=>'form-horizontal']) !!}
 	@include('mahasiswa.form')
@@ -13,3 +14,4 @@
 	{!! Form::close() !!}
 </div>
 @stop
+

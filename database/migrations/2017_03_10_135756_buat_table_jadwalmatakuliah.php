@@ -12,14 +12,14 @@ class BuatTableJadwalMatakuliah extends Migration
      */
     public function up()
     {
-        Schema::create('jadwal_matakuliah', function (Blueprint $table) {
+        Schema::create('jadwalmatakuliah', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mahasiswa_id')->unsigned();
             $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa');
             $table->integer('ruangan_id')->unsigned();
             $table->foreign('ruangan_id')->references('id')->on('ruangan');
-            $table->integer('dosen_matakuliah_id')->unsigned();
-            $table->foreign('dosen_matakuliah_id')->references('id')->on('dosen_matakuliah');
+            $table->integer('dosenmatakuliah_id')->unsigned();
+            $table->foreign('dosenmatakuliah_id')->references('id')->on('dosenmatakuliah');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class BuatTableJadwalMatakuliah extends Migration
      */
     public function down()
     {
-        Schema::drop('jadwal_matakuliah');
+        Schema::drop('jadwalmatakuliah');
     }
 }

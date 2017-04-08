@@ -5,67 +5,52 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\matakuliah;
 
-use App\Matakuliah;
-
-class MatakuliahController extends Controller
+class matakuliahController extends Controller
 {
-    public function awal()
-{
-	return view('matakuliah.awal',['data'=>Matakuliah::all()]);
-}
+	protected $informasi = 'Gagal Melakukan Aksi';
+     public function awal()
+	{
+		$semuamatakuliah = matakuliah::all();
+		/*return "Hello dari matakuliahController";*/
+		return view('matakuliah.awal',['semuamatakuliah'=>matakuliah::all()]);
+	}
 	public function tambah()
-{
-	return view('Matakuliah.tambah'); //return $this->simpan();
-}
-	public function simpan(Request $input) //public function simpan()
-{
-	$matakuliah = new Matakuliah();
-	$matakuliah->title = $input->title;
-	$matakuliah->keterangan = $input->keterangan;
-	$informasi = $matakuliah->save() ? 'Berhasil simpan data' : 'Gagal simpan data';
-	return redirect('matakuliah')->with(['informasi'=>$informasi]);
-	//$Matakuliah->save();
-	//return "data dengan username ($Matakuliah->username) telah disimpan";
-}
+	{
+		/*return $this->simpan();*/
+		return view('matakuliah.tambah');
+	}
+	public function simpan(Request $input)
+	{
+		$matakuliah = new matakuliah();
+		$matakuliah->title = $input->title;
+		$matakuliah->keterangan = $input->keterangan;
+		$informasi = $matakuliah->save()? 'Berhasil simpan data' : 'gagal simpan data';
+		return redirect('matakuliah')->with(['informasi'=>$this->informasi]);
+	}
 	public function edit($id)
-{
-	$matakuliah = Matakuliah::find($id);
-	return view('matakuliah.edit')->with(array('matakuliah'=>$matakuliah));
-}
+	{
+		$matakuliah = matakuliah::find($id);
+		return view('matakuliah.edit')->with(array('matakuliah'=>$matakuliah));
+	}
 	public function lihat($id)
-{
-	$matakuliah = Matakuliah::find($id);
-	return view('matakuliah.lihat')->with(array('matakuliah'=>$matakuliah));
-}
-	public function update($id, Request $input)
-{
-	$matakuliah = Matakuliah::find($id);
-	$matakuliah->title = $input->title;
-	$matakuliah->keterangan = $input->keterangan;
-	$informasi = $matakuliah->save() ? 'Berhasil simpan data' : 'Gagal simpan data';
-	return redirect('matakuliah')->with(['informasi'=>$informasi]);
-}
+	{
+		$matakuliah = matakuliah::find($id);
+		return view('matakuliah.lihat')->with(array('matakuliah'=>$matakuliah));
+	}
+	public function update($id,Request $input)
+	{
+		$matakuliah = matakuliah::find($id);
+		$matakuliah->title = $input->title;
+		$matakuliah->keterangan = $input->keterangan;
+		$informasi = $matakuliah->save()? 'Berhasil simpan data' : 'gagal simpan data';
+		return redirect('matakuliah')->with(['informasi'=>$informasi]);
+	}
 	public function hapus($id)
-{
-	$matakuliah = Matakuliah::find($id);
-	$informasi = $matakuliah->delete() ? "Berhasil hapus data" : "Gagal hapus data";
-	return redirect('matakuliah')->with(['informasi'=>$informasi]);
+	{
+		$matakuliah = matakuliah::find($id);
+		$informasi = $matakuliah->delete()? 'Berhasil hapus data' : 'gagal hapus data';
+		return redirect('matakuliah')->with(['informasi'=>$informasi]);
+	}
 }
-}
-
-// 	return "Hello dari MatakuliahController";
-// }
-// 	public function tambah()
-// {
-// 	return $this->simpan();
-// }
-// 	public function simpan()
-// {
-// 	$matakuliah = new Matakuliah();
-// 	$matakuliah-> title = 'Pemprog. Framework';
-// 	$matakuliah-> keterangan = 'Puskom';
-// 	$matakuliah->save();
-// 	return "matakuliah dengan title {$matakuliah->title} dengan keterangan {$matakuliah->keterangan} telah disimpan";
-// }
-// }

@@ -17,7 +17,7 @@
 		</thead>
 		<tbody>
 			<?php $x=1; ?>
-			@foreach ($data as $dosenmatakuliah)
+			@foreach ($semuadosenmatakuliah as $dosenmatakuliah)
 			<tr>
 				<td>{{ $x++}}</td>
 				<td>{{ $dosenmatakuliah->dosen_id or 'ID Dosen Kosong' }}</td>

@@ -12,7 +12,7 @@ class BuatTableDosenMatkul extends Migration
      */
     public function up()
     {
-        Schema::create('dosen_matakuliah', function (Blueprint $table) {
+        Schema::create('dosenmatakuliah', function (Blueprint $table) {
              $table->increments('id');
             $table->integer('dosen_id')->unsigned();
             $table->foreign('dosen_id')->references('id')->on('dosen');
@@ -29,6 +29,6 @@ class BuatTableDosenMatkul extends Migration
      */
     public function down()
     {
-        Schema::drop('dosen_matakuliah');
+        Schema::drop('dosenmatakuliah');
     }
 }
