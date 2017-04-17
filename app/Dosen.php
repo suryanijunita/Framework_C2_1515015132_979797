@@ -14,7 +14,7 @@ class dosen extends Model
 
     }
     public function dosenmatakuliah(){
-    	return $this->hasMany(dosenmatakuliah::class,'dosenmatakuliah_id');
+    	return $this->hasMany(dosenmatakuliah::class);
     }
 
     public function getUsernameAttribute(){

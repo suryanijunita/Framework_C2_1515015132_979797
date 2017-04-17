@@ -11,12 +11,14 @@ use App\pengguna;
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', function(){
+	return('Nama Saya :Suryani Junita Patandianan');
+	});
+/*Route::get('/', function(){
 	$dosen_mengajar = App\dosen::with('pengguna')->get();
-	return $dosen_mengajar;
+	return $dosen_mengajar;*/
 
-});
+//});
 
 Route::get('jadwalmatakuliah/lihat/{jadwalmatakuliah}', 'jadwalmatakuliahController@lihat');
 Route::post('jadwalmatakuliah/simpan','jadwalmatakuliahController@simpan');
@@ -99,6 +101,56 @@ Route::get('master',function(){
 	return 'Nama Saya : Suryani Junita Patandianan';
 });
 
+Route::get('ujiHas','RelationshipRebornController@ujiHas');
+Route::get('ujiDoesntHave','RelationshipRebornController@ujiDoesntHave');
+Route::get('/s',function ()
+{
+	return \App\dosenmatakuliah::whereHas('dosen',function($query)
+	{
+		$query->where('nama','like','%s%');
+	})->with('dosen')->groupBy('dosen_id')->get();
+});
+
+Route::get('/s_dan_a', function ()
+{
+	return \App\dosenmatakuliah::whereHas('dosen',function($query)
+	{
+		$query->where('nama','like','%s%');
+	})
+	->orWhereHas('matakuliah',function ($kueri)
+	{
+		$kueri->where('title','like','%a%');
+	})
+	->with('dosen','matakuliah')
+	->groupBy('dosen_id')
+	->get();	
+});
+
+Route::get('/s', function ()
+{
+	return \App\jadwalmatakuliah::whereHas('mahasiswa',function($query)
+	{
+		$query->where('nama','like','%s%');
+	})
+	->with('mahasiswa')
+	->groupBy('mahasiswa_id')
+	->get();
+});
+
+Route::get('/a_dan_s', function()
+	{
+		return \App\jadwalmatakuliah::whereHas('mahasiswa',function($query)
+	{
+		$query->where('nama','like','$a$');
+	})
+	->orWhereHas('ruangan',function($kueri)
+	{
+		$kueri->where('title','like','%s%');
+	})
+	->with('mahasiswa','ruangan')
+	->groupBy('mahasiswa_id')
+	->get();	
+});
 // Route::get('/', function () {
 //     return view('master');
 // });

@@ -2,7 +2,7 @@
 @section('container')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<strong>Seluruh Data Ruangan</strong>
+		<strong>Seluruh Data Mahasiswa</strong>
 		<a href="{{url('mahasiswa/tambah')}}" class="btn btn-xs btn-primary pull-right"><i class="fa fa-plus"></i>Mahasiswa</a>
 		<div class="clearfix"></div>
 	</div>
