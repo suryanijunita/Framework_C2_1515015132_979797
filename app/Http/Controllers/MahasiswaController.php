@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\mahasiswa;
 use App\pengguna;
+use App\Http\Requests\MahasiswaRequest;
 
 class mahasiswaController extends Controller
 {
@@ -22,8 +23,12 @@ class mahasiswaController extends Controller
 		/*return $this->simpan();*/
 		return view('mahasiswa.tambah');
 	}
-	public function simpan(Request $input)
+	public function simpan(MahasiswaRequest $input)
 	{
+		$this->validate($input,[
+			'username'=>'required',
+			'password'=>'required'
+		]);
 		$pengguna = new pengguna($input->only('username','password'));
 		if ($pengguna->save()){
 			$mahasiswa = new mahasiswa();

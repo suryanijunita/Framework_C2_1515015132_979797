@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\dosen;
 use App\pengguna;
 use App\dosenmatakuliah;
+use App\Http\Requests\DosenRequest;
 
 class dosenController extends Controller
 {
@@ -23,6 +24,10 @@ class dosenController extends Controller
 	}
 	public function simpan(Request $input)
 	{
+		$this->validate($input,[
+			'username'=>'required',
+			'password'=>'required'
+		]);
 		$pengguna = new pengguna($input->only('username','password'));
 		if($pengguna->save()){
 			$dosen = new dosen();

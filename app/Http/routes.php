@@ -151,6 +151,26 @@ Route::get('/a_dan_s', function()
 	->groupBy('mahasiswa_id')
 	->get();	
 });
+
+Route::get('/',function (Illuminate\Http\Request $request)
+{
+	echo "Ini adalah request dari method get " . $request->nama;
+});
+
+use Illuminate\Http\Request;
+Route::get('/',function ()
+{
+	echo Form::open(['url'=>'/']).
+		Form::label('nama').
+		Form::text('nama',null).
+		Form::submit('kirim').
+		Form::close();
+});
+
+Route::post('/',function (Request $request)
+{
+	echo "Hasil dari form input tadi nama : ".$request->nama;
+});
 // Route::get('/', function () {
 //     return view('master');
 // });

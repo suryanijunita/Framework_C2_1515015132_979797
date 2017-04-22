@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\matakuliah;
+use App\Http\Requests\MatakuliahRequest;
 
 class matakuliahController extends Controller
 {
@@ -23,6 +24,10 @@ class matakuliahController extends Controller
 	}
 	public function simpan(Request $input)
 	{
+		$this->validate($input,[
+			'username'=>'required',
+			'password'=>'required'
+		]);
 		$matakuliah = new matakuliah();
 		$matakuliah->title = $input->title;
 		$matakuliah->keterangan = $input->keterangan;

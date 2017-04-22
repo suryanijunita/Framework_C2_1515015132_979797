@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\dosenmatakuliah;
 use App\dosen;
 use App\matakuliah;
+use App\Http\Requests\DosenmatakuliahRequest;
 
 class dosenmatakuliahController extends Controller
 {
@@ -26,6 +27,10 @@ class dosenmatakuliahController extends Controller
 	}
 	public function simpan(Request $input)
 	{
+		$this->validate($input,[
+			'username'=>'required',
+			'password'=>'required'
+		]);
 		$dosenmatakuliah = new dosenmatakuliah($input->only('dosen_id','matakuliah_id'));
 
 		if($dosenmatakuliah->save()) $this->informasi = 'Dosen Matakuliah Berhasil Disimpan';

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\ruangan;
+use App\Http\Requests\RuanganRequest;
 
 class ruanganController extends Controller
 {
@@ -21,6 +22,10 @@ class ruanganController extends Controller
 	}
 	public function simpan(Request $input)
 	{
+		$this->validate($input,[
+			'username'=>'required',
+			'password'=>'required'
+		]);
 		$ruangan = new ruangan();
 		$ruangan->title = $input->title;
 		$ruangan->save();
