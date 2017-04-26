@@ -11,14 +11,21 @@ use App\pengguna;
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function(){
-	return('Nama Saya :Suryani Junita Patandianan');
-	});
+Route::get('/login','SesiController@form');
+Route::post('/login','SesiController@validasi');
+Route::get('/logout','SesiController@logout');
+Route::get('/','SesiController@index');
+
+//Route::get('/', function(){
+	///return('Nama Saya :Suryani Junita Patandianan');
+	//});
 /*Route::get('/', function(){
 	$dosen_mengajar = App\dosen::with('pengguna')->get();
 	return $dosen_mengajar;*/
 
 //});
+Route::group(['middleware'=>'AuthentifikasiUser'], function ()
+{
 
 Route::get('jadwalmatakuliah/lihat/{jadwalmatakuliah}', 'jadwalmatakuliahController@lihat');
 Route::post('jadwalmatakuliah/simpan','jadwalmatakuliahController@simpan');
@@ -97,8 +104,8 @@ Route::post('pengguna/edit/{pengguna}','penggunaController@update');
 Route::get('pengguna/hapus/{pengguna}','penggunaController@hapus');
 Route::get('pengguna/tambah','penggunaController@tambah');
 Route::get('pengguna','penggunaController@awal');
-Route::get('master',function(){
-	return 'Nama Saya : Suryani Junita Patandianan';
+// Route::get('master',function(){
+// 	return 'Nama Saya : Suryani Junita Patandianan';
 });
 
 Route::get('ujiHas','RelationshipRebornController@ujiHas');

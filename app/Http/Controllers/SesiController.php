@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controller;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\pengguna;
 use Illuminate\Auth\SessionGuard;
 use Auth;
-class SesiController extends Controller
-{
-public function index()
+// use validator;
+
+class SesiController extends Controller{
+	public function index()
 	{
 		return view('master');
 	}
@@ -25,14 +26,22 @@ public function index()
 		$this->validate($input,[
 			'username'=>'required',
 			'password'=>'required',
-		]);
+			]);
 		$pengguna = pengguna::where($input->only('username','password'))->first();
 		if(! is_null($pengguna)){
 			Auth::login($pengguna);
 			if(Auth::check())
-				return redirect('/')->with('informasi',"Selamat Datang".Auth::user()->username);
+				return redirect('/')->with('informasi',"Selamat Datang ".Auth::user()->username);
 		}
-				return redirect('/login')->withEr
+		return redirect('/login')->withErrors(['Pengguna Tidak ditemukan']);
 	}
+	public function logout()
+	{
+		if(Auth::check()){
+			Auth::logout();
+			return redirect('/login')->withErrors(['Silahkan Login untuk Masuk ke Sistem']);
+			}else{
+				return redirect('/login')->withErrors(['Silahkan Login terlebih dahulu']);
+			}
 	}
 }
